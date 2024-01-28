@@ -1,0 +1,50 @@
+Change git editor
+- place 'export EDITOR=mcedit' at the end of '~/.bashrc'
+
+Commands
+- git init   --> create repo
+- git init --bare   --> create repo, that can be clonned and commits on the 
+    clone can be pushed. They are not visible, but they will be on clones
+      --> mini github
+- git config --global  --> global = valid for all git projects
+- git clone [HTTPS/SSH]  --> for ssh upload the public key first
+- git clone smolikj4@u-pl7.ms.mff.cuni.cz:su/lab05/repo
+     --> user@hostname:local-path
+- git status
+- git diff
+- git add, git add -p  --> specify what hunks (changes) in a file should be added
+- git commit [-m 'Typo fix'], git commit --amend    --> modify last commit
+- git push
+- git pull
+- git log, git log --oneline (=ls), git ll
+- git rev-parse --short HEAD   --> get last commit ID
+- git alias, git config --global alias.[alias] ['command']
+- git branch, git branch -a    --> list local branches
+- git branch new-branch        --> create new-branch
+- git branch --show-current
+- git branch -d new-branch     --> delete new-branch
+- git checkout new-branch      --> switch to new-branch
+- git checkout -b new-branch   --> create and switch to new-branch
+
+Merging branches
+- merge request in gitlab   --> git pull in the clone after tthe merge is done
+- # ensure we are on main branch
+- git merge new-branch   --> merges new-branch to main
+
+Merging upstream changes
+- work on a feature on feature branch but want to keep up with main branch
+  or a different fork 
+- git remote, git remote --verbose, git remote show origin
+     --> configure with 'tracking branch' in man page
+- git remote add [name] [ssh adress to repo]    --> add a new remote (fork)
+- git fetch [upstream name]     --> fetches branches from remote
+- git merge [upstream branch]   --> merge from upstream branch
+
+Cestovani casem
+- git reset --hard   --> posouva pointry branchu
+- git reset
+- git reflog 
+- git checkout [commit id]  --> detached head, posune head na ten commit
+
+
+

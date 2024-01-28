@@ -1,0 +1,25 @@
+Comverting types
+- pandoc input > output
+- pandoc -o [output file] [input file]   --> another option
+- RULE: do not commit files that can be generated automatically
+- examples in ~/mff/06/examples/06/pandoc
+
+Converting .md -> .html
+- cat file.md   --> prints it in html but without the header
+- pandoc --standalone file.md > file.html
+    --> --standalone is needed only for conversions to html
+- pandoc uses conversion templates by default
+- custom template --> parts between $ in template are replaced with actual content
+- pandoc --template template.html file.md > file.html
+- include something after the body  --> pandoc -A file.html
+
+
+Converting .md -> .odt 
+- pandoc -o file.odt file.md    --> general libreoffice file
+
+Converting .odt -> .pdf
+- soffice --headless --convert-to pdf file.odt    --> headless zakaze GUI
+
+Other Conversion 
+- pandoc can convert to and from LaTeX
+- --list-input/output/formats

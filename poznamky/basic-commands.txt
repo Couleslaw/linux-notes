@@ -1,0 +1,43 @@
+Prace se soubory
+- pwd, realpath [FILE]
+- mkdir, touch
+- rm, rm -r
+- cp, mv
+- cat / echo >soubor / >>soubor
+- hexdump -C sample.gif   --> -C vypise i ASCII
+- file sample.gif   --> vypise typ souboru
+- grep [pattern] [filename]   --> prohledani souboru
+- mktemp, mktemp -d    --> create a safe temp file / dir, print name to stdout
+- stat
+
+Internet
+- wget [URL]   --> fetch file from given URL
+- curl [URL]   --> print whatever is recieved by the protocol to stdout
+
+Midnight commander
+- copy to the other panel 
+- <Insert> - select multiple files 
+
+Editors - Emacs, Joe, mcedit, Vim
+
+Wildcards
+- *.txt, x?.txt
+- [of].txt, [o-f].txt
+- ls -d D*  --> vypise pouze nazvy tech slozek, ne jejich obsah
+
+Typical options
+--help 
+--version could be used to print the version and copyright information of the
+  executed program. Sometimes -v or -V works as well.
+
+--verbose or --debug (sometimes -v or -d) launch the program in verbose mode 
+  where the program prints in more detail what it is doing.
+
+--dry-run (sometimes -n) executes the program without performing actual changes,
+  e.g. it can print which files would be removed without actually deleting any of them
+
+--interactive (sometimes -i) will typically cause the program to ask for 
+  interactive confirmation of destructive actions.
+
+-- could be used to terminate the list of options if you have filenames starting 
+  with a dash.

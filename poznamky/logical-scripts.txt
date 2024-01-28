@@ -1,0 +1,21 @@
+Utilization of exit codes
+- && - if we want to execute one command only if the previous one succeeded
+- || - if we want to execute the second command only if the first one fails
+
+- test -d .git && echo "We are in a root of a Git project"
+- test -f README.md || echo "README.md missing"
+- git status >>status.html 2>/dev/null || echo "unknown" >>status.html
+
+Chaining 
+- test -f README.md || echo "README.md missing" && echo "We have README.md"
+- test -f README.md && echo "We have README.md" || echo "README.md missing"
+  --> vyhodnocuji se zleva a maji stejnou prioritu
+
+Special commands
+- true   --> does nothing, successfully
+- false  --> does nothing, unsuccessfully
+- : [argv]  --> does nothing, return code 0
+
+Expressions using test
+- test int1 -eq int2  ==  [ int1 -eq int2␣]
+- /usr/bin/[  ->  /usr/bin/test   +   ␣] je ukoncovac

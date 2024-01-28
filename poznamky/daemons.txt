@@ -1,0 +1,16 @@
+Services thar run in the background and answer requests 
+ --> like when a HTTP server listens on port 80
+ --> the names in 'd'  --> sshd, httpd
+
+Systemd, systemctl, journalctl  -> daemon for service (daemon) management
+
+>sudo systemctl start sshd    # start a ssh server
+>ssh intro@localhost          # conncet to it
+>sudo systemctl status sshd   # status
+>sudo systemctl stop sshd     # stop it
+>journalctl -u sshd    # see log of sshd
+
+Enabling services
+ --> enabled services start after each boot
+>sudo systemctl enable/disable sshd
+

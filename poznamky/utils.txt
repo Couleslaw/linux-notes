@@ -1,0 +1,15 @@
+- firefox, typora, okular, subl, vlc
+
+- youtube-dl -o [output file]  --> download video - youtube, videvo,...
+> youtube-dl --recode-video mp4 [URL]      --> convert to mp4
+
+> vlc --video-splitter wall --wall-cols 2 --wall-rows 2 --wall-element-aspect 4:3 video.mp4
+     --> split video into 4 blocks  --> useful for multiple monitors
+
+- ffmpeg    --> converting video & audio
+> ffmpeg -i video.mkv -codec copy video.mp4     # only convert formats
+> ffmpeg -i "input_file.mp4" -c:v copy -c:a aac "output_file.mp4"
+    # copy video, convert audio to ACC
+
+- convert img.png img.jpg    # convert .png to .jpg
+- convert in.png -resize 800x600 out.png    # resize the image

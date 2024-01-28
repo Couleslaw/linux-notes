@@ -1,0 +1,8 @@
+Each user account as a numberical id -> stored in /etc/passwdl
+it is used to identify the user, root has UID=0   (User ID)
+It is possible to get info about current user with cmd 'id'
+>useradd, userdel, usermod
+>su [user] # switch user 
+>su -    # switch to super user and start in /root  (the $HOME dir of root)
+>passwd  # change the passwd of current user
+         # when user is root --> specify user --> easy password reset

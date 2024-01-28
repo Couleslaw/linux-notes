@@ -1,0 +1,44 @@
+function_name() {
+    commands
+}
+
+- it has an interface as a full-fledged shell script
+- doesnt take any arguments --> they are passed as $1, $2,...
+- returns an integer exit code
+
+Example logger
+> log_message() {
+>     echo "$( date '+build.sh | %Y-%m-%d %H:%M:%S |' )" "$@" >&2
+> }
+> logger=":"
+> test "${1:-none}" = "--verbose" && logger=log_message
+> $logger "Reading current version..."
+
+Function return value
+- return [exit code]  --> terminates function, exit code is an optional param
+- exit  --> terminares the whole script
+- the exit code of the last program is also the exit code of the whole function
+    --> the two following examples are equivalent
+
+> is_shell_script() {
+>     test "$( head -n 1 "$1" 2>/dev/null )" = '#!/bin/bash' && return 0
+>     return 1
+> }
+
+> is_shell_script() {
+>     local filename="$1"      #define local variable
+>     test "$( head -n 1 "$filename" 2>/dev/null )" = '#!/bin/bash'
+> }
+
+- is_shell_script "input.sh" || echo "Warning: shebang missing from input.sh" >&2
+
+Command priority
+- everything is called the same way in the shell
+- aliases > functions > built-isn > commands from $PATH
+- to specify cmd or built-in use 'command [cmd]' and 'builtin [built-in]'
+
+Source files
+- define a function msg() in logging.sh
+- 'source logging.sh' in a script --> use 'msg' there
+- 'source script.sh' and '. script.sh' are equivalent
+

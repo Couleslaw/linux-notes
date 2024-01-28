@@ -1,0 +1,31 @@
+#!/bin/sh
+set -eu    # posix doesn't have set -o pipefail
+
+prog="$( basename -s .sh -- "$0")"
+
+usage() {
+    cat << EOF
+Usage: $prog [-l MIN] [-s MAX] [FILE...]
+       $prog -h
+Print lines from FILE with MIN <= len(line) < MAX.
+  -l MIN  Only print lines longer than (>=) MIN
+  -s MAX  Only print lines shorter than (<) MAX
+  -h      Print this message and exit
+  -v      Be verbose
+EOF
+}
+
+while getopts "a:b" opt; do   # ted -a vyzaduje argument
+    case $opt in 
+    a) echo "Got option a with value $OPTARG";;
+    b) echo "Got option b";;
+    h) usage; exit;;
+    v) set -x;; 
+    *) echo usage >&2; exit 1;;
+    esac
+done
+
+shift $(( OPTIND - 1))  # OPTIND = index optiony na ktery se to zastavilo
+
+printf "Positional arg: %sn" "$@"     # man 3 printf
+# main program

@@ -1,0 +1,6 @@
+What is shell?
+- this is a terminal emulater --> terminal was the monitor and keyboard that
+  was used to cummunicate with the computer back in the day
+- we use the terminal emulater as an UI to communicate with the shell
+- the most common shell is bash 
+- ps   --> find out what shell is running 

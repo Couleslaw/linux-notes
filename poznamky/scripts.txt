@@ -1,0 +1,35 @@
+python3 path_to_python_script.py
+bash path_to_shell_script.sh
+
+Hashbang - tells the system which interpreter to use
+- #!/bin/bash
+- #!/usr/bin/env python3
+- chmod +x script.sh   --> gives it the executable flag
+- ./script.sh   --> specify path --> script.sh is not in $PATH
+- which <command>  --> prints its path in $PATH
+
+Exit and debugging
+- bash -x script.sh    --> use for fast debugging
+- set -e    --> terminate-on-failure: exit with the same code as the failed command
+- set -u    --> terminate when an uninitialized variable is used
+- set -x    --> extensive: prints + [cmd] before executing the cmd
+- set -o pipefail     --> failure of any cmd fails the whole pipeline
+- set -euo pipefail   --> each script should start with this cmd
+- -o pipefail is not perfect --> e.g. when cat writes to a file that is already closed
+    --> || true: add it to the end of a pipeline that is fine but failing
+- trap [cmd] EXIT  --> cmd will be always performed before exiting 
+
+Using interpretors
+- see: /home/intro/mff/03/[args.py / use-args] 
+- python: sys.argv  -> na indexu 0 je ten command
+  -> ./args.py a b c  --> ['./args.py', 'a', 'b', 'c']
+- when args.py is used as an interpretor, it recieves
+    ['/home/intro/mff/03/args.py', './args.py', 'a', 'b', 'c']
+
+Shellcheck
+- check scripts
+- shellcheck -o all    --> include style check
+
+Bashrc - runtime configuration
+- the ~/.bashrc script is executed when shell lounches
+- define permanent aliases there

@@ -1,0 +1,15 @@
+Exit codes
+- a way of checking wheather a program terminated correctly or not
+- 0 = success, non-zero = error
+- the exit code of the last run command is in $?
+
+Pipelines 
+- the success of a pipeline is determined by its last command
+    --> sort /nonexistent | head     is successful
+- set -o pipefail    --> failure of any cmd fails the whole pipeline
+
+Python
+- unless specified otherwise with sys.exit(), the exit code is always zero
+
+C
+- the int main function returns the exit code

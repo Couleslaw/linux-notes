@@ -1,0 +1,45 @@
+while CMD; do
+    .
+    break
+    continue
+    .
+done
+
+while read -r line; do    # for line in stdin
+    len=${#line}          # pocet znaku na radce
+done <"input.txt"         # je to jen velky prikaz, funguje <,>,|
+
+for x in 1 2 3; do
+    .
+    $x
+    .
+done
+
+for x in $(seq 10); do    # seq 0 9o
+    .
+    .
+done
+
+for x; do    # x jsou argumenty $@
+    .
+    .
+done
+
+if COND; then
+    .            # same as COND && ...
+elif
+    .
+else
+    .
+fi
+
+case $what in
+val1)
+    cmd
+    cmd;;
+val2) cmd; cmd;;
+    .
+mc|mcedit) ;;    # or
+emacs|vi*) ;;    # wildcards
+*) cmd;;
+esac

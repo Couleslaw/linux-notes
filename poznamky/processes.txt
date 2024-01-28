@@ -1,0 +1,29 @@
+Processes
+- process = running program
+- both share the code, but a process also contains the stack, heap,
+  list of opened files etc.
+
+View processes
+- htop  --> view basic properties of running processes  (~task manager)
+- ps    --> process status --> find out shell PID
+- ps -e, ps -auxfw (more detail) --> non-interactive
+- ps -e --forest    --> --forest depicts the parent/child relationships
+- ps -ef   --> full = full name + processes of all users
+    --> every user can see processes of other users --> including cmd-line args
+    --> never pass passwords as command-line arguments, but through files
+
+Process ID
+- PID 1 is used by the first process in the system, which is always running. 
+- PID 0 is reserved as a special value – see fork(2) --> not used by any process
+- processes are assigned their PIDs incrementally and PIDs are eventually reused.
+- /proc/   --> a dir with all processes --> ps reads info from here
+
+Killing processes
+- sleep 600
+- pgrep sleep  --> 21472
+- pgrep 600    -->       --> pgrep looks only for the program name (sleep)
+- pgrep -f 600 --> 21472 --> looks for full name = the whole command line
+- kill PID   --> kills the procces with PID
+- kill -9 PID  --> some processes do not terminate with kill 
+               --> kill -9 tells the OS to be more forceful
+- user can always kill his own processes but not anyone elses

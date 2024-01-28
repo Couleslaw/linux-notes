@@ -1,0 +1,15 @@
+Bashrc - runtime configuration
+- the ~/.bashrc script is executed when shell lounches
+- define permanent aliases here
+
+Prompt Strings 
+- PS1   - prompt string in the terminal
+- PS1='\n\u \w\$ '   newline, user, working dir, $ at the end
+- PS1='\[\033[01;32m\]\u \w\[\033[0m\]\$ '
+- PS1='\n
+       \[\033[01;32m\]$( dt )\[\033[0m\]\n
+       \[\033[01;34m\]\u\[\033[0m\] \[\033[01;35m\]\w\[\033[0m\]\$ '
+       
+- PS2, PS4   --> change some other stuff
+- PS3   --> change the string displayed before cmd when set -x (default '+')
+- PROMPT_COMMAND  --> this is executed before each prompt is displayed

@@ -1,0 +1,48 @@
+egrep = grep -E  - find
+grep -i   # done be case-sensitive
+
+system     # lines with system
+^system    # lines starting with system
+system$    # lines ending with system      --> ^ and $ are anchors
+^[rst]     # lines starting with r/s/t
+[0-9][0-9][0-9]  # all 3-digit numbers (but also 4,...-digit ones)
+^[^r-z]    # lines not starting with any of the letters r-z (the second ^ is '!')
+* # denotes, that the previous part of the regex can appear zero or more times
++ # denotes, that the previous part of the regex can appear one or more times
+^[0-9]+$   # lines consisting of digits only 
+. # match any single character 
+^foo.*bar$ # lines starting with foo and ending with buz
+ba(na)*na  # () work, matches bana, banana,...
+^(Meow|Haf)*$  # match lines consisting of Meow and Haf
+     --> [abc] = (a|b|c)
+{N}, {N,M} # previous part of the regex should repeat N times, or range N to M
+^"[a-z]{4,10}"$ # match lines which contain 4 to 10 letters enclosed in " "
+\. \*   # \ changes the behaviour of chars --> changes special to normal and vv
+
+egrep -i '[a-z0-9\.]+@[a-z0-9\.]+\.[a-z]+'  # find all email addresses
+([^A-Za-Z]|^)[A-Z][a-z]*([^A-Za-z]|$)'  
+    --> find words starting with a capital letter and all other letters lowercase
+
+
+sed - substitution
+'s[delim][before][delim][after][delim]'  # delim is usually :,/,# 
+
+sed 's:magna:angam:' lorem.txt   # sub the first occurance on each line 
+sed 's:magna:angam:g' lorem.txt  # global --> replace all occurences 
+
+(regex)  # it is possible to group stuff in \( ... \)
+        --> to make them act as grouping operators instead of literal ( and )
+& \n     # it is possible to refer to the left hand side 
+        --> to & refers to everything, \n refers to the n-th (...) groop 
+'s:\([0-9][0-9][0-9][0-9]\)-\([0-9][0-9]\)-\([0-9][0-9]\):& = \3. \2. \1:g'
+        --> 2023-05-16 => 2023-05-16 = 16. 05. 2023
+
+'s:[ \t]*$::'         # remove all trailing whitespaces and tabs
+'s:[A-Za-z]\+:(&):g'  # put all words in parenthesis
+sed -E 's:(.).* (.*):\2, \1.:'   # convert names, -E changes \( and (
+    --> Karel Velicka  =>  Velicka, K.
+sed '/^[ \t]*$/d'  # delete all empty lines
+    --> sed '/regex/d'  # delete all lines containing 'regex'
+tr '\n' ' ' | sed -E 's:([.?!]) *([A-Z]):\1\n\2:g'; echo
+    --> reformat input to separete sentences with \n  (echo is there for last \n)
+    --> sentence := [A-Z] ... [.!?]   # there can be more spaces between sentences

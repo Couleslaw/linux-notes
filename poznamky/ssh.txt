@@ -1,0 +1,51 @@
+Remote prihlaseni
+- SSH  --> well-known service TCP port 22
+- ssh user@hostname      --> login
+- ssh user@hostname [cmd]   
+       --> this will execute cmd on the remote machine and return the value
+- cat file.txt | ssh user@hostname "cat >copy-file.txt"   --> copy files 
+- mc --> left --> shell link   --> use file manager remotly
+
+Autentikace pomoci klicu 
+- ssh-keygen -t [alg(ed25519)] -C [comment(email)]  --> generate key pair 
+    --> keys in ~/.ssh/id_ed25519(.pub)
+- ssh-copy-id user@hostname    --> copy the public key
+    --> use -i if you have multiple keys
+    --> on the distant machine the key will be in ~/.ssh/authorized_keys
+
+Commands
+- uname -a   --> print all system info
+- lscpu      --> print device info
+- free -h    --> RAM info
+- uptime     --> for how long has the system been up
+
+SSH configuration
+- ~/.ssh/config
+- syntax in man 5 ssh_config
+- ProxyJump <machine>    --> connect via <machine>
+
+Copying files
+- same syntax as cp
+> scp local_source_file.txt user@remote_machine:remote_destination_file.txt
+> scp user@remote_machine:remote_source_file.txt local_destination_file.txt
+    -> old, everywhere, not very secure
+> rsync local_source_file.txt user@remote_machine:remote_destination_file.txt
+> rsync local_source_file.txt user@remote_machine:remote_destination_directory/
+    -> powerful, can copy trees, but both machines have to have it installed
+
+MFF Linux Machines
+    Lab SU1
+        u1-1.ms.mff.cuni.cz
+        u1-2.ms.mff.cuni.cz
+        …
+        u1-14.ms.mff.cuni.cz
+    Lab SU2
+        u2-1.ms.mff.cuni.cz
+        u2-2.ms.mff.cuni.cz
+        …
+        u2-25.ms.mff.cuni.cz
+    Rotunda
+        u-pl1.ms.mff.cuni.cz
+        u-pl2.ms.mff.cuni.cz
+        …
+        u-pl23.ms.mff.cuni.cz

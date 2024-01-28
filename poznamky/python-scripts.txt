@@ -1,0 +1,46 @@
+import sys
+> for arg in sys.argv
+> sys.stdout.write()
+> sys.stderr.write()
+> print(msg, file=sys.stderr)
+> for line in stdin: pass
+> sys.exit(exit_code)
+
+import os 
+> os.system('clear')
+
+import argparse
+> <https://docs.python.org/3/library/argparse.html>
+> parser = argparse.ArgumentParser(description="")
+> parser.add_argument(
+        '-t', '--input-separator',         # name
+        dest='input_field_separator',      # attribute name in the Namespace obj
+        default=None,                      # default value
+        metavar='SEP',                     # what should be printed in --help
+  )
+> parser.add_argument(
+        '-v', '--value',
+        dest='value_column',
+        type=int,                # the var will automatically be converted to int 
+        default=2,
+        metavar='INTEGER',
+  )
+> parser.add_argument(
+        nargs='*',        # number of args - int N, '?' for optional
+        default=[],       # '*' all args are stored in a list 
+        dest='sources',   # '+' same as '*' but prin err msg when no args at all
+        metavar='FILE',
+  )
+> args = parser.parse_args()  # creates a Namespace object with attributes
+> print(args.input_field_separator, args.value_column, args.sources)
+
+>>> python_script.py --help
+
+>>> usage: group_sum.py [-h] [-t SEP] [-v INTEGER] [FILE ...]
+>>> Group sum  # description
+>>> positional arguments:
+>>>   FILE
+>>> options:
+>>>   -h, --help            show this help message and exit
+>>>   -t SEP, --input-separator SEP
+>>>   -v INTEGER, --value INTEGER

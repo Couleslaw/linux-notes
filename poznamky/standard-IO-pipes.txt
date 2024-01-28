@@ -1,0 +1,62 @@
+When we use redirection to give a program input from file the shell does it
+- cat <ahoj.txt   --> shell vola open() a resi problemy, az pak to dostane cat
+- cat ahoj.txt    --> cat resi vsechno sama
+- cat ahoj.txt >file.txt  --> z pohledu cat se nic nezmenilo, redirekci dela shell
+
+Standard error output = stderr 
+- is printed immedietelly
+- is logically different from stdout and is not subject to > redirection
+- file descriptors: (0, 1, 2) = (stdin, stdout, stderr)
+- can be redirected via '2>'
+     --> cat one.txt two.txt nonexistent.txt >merged.txt 2>err.txt
+- redirect stdout to stderr: echo "stdout" >&2
+- redirest stdout and stderr to a single file: >output.txt 2>&1 or &>output.txt
+
+Python
+- print('Hello world') = sys.stdout.write('Hello world\n') 
+    --> sys.stdout se chova jako otevreny soubor
+- input() neni standardni input, protoze je interaktivni
+- for line in sys.stdin:   --> taky se chova jako otevreny soubor
+- kdyz v programu prijimam input pomoci stdin, tak muzu pouzivat redirekci
+    --> program.py <file.txt
+- /home/intro/mff/04
+- print(f"Error reading file {filename}.", file=sys.stderr)
+
+Pipelines
+- pipes | connect stdin and stdout
+- /home/intro/mff/04/examples/04
+- cat logs/*.csv | cut -d , -f 5 | sort | uniq -c | sort -n | tail -n 3
+     --> 3 most visited URLs
+- cat logs/*.csv | cut -d , -f 4 | paste -s -d + | bc
+     --> sum of all transfered bytes
+
+Useful filters
+- cut -d [delimiter] -f [field],[other field],...
+- sort  (alphabetically), sort -n (numerically), sort -r (reverse)
+- sort -t [sep] -k [field]   --> sort by key=field  (sep is blank by default)
+- uniq -c    --> leaves out identical consecutive lines, -c = count rika kolik
+- tee file.txt               --> writes to both stdout and file.txt
+- tail -n [N]                --> prints last N lines to stdout
+- head -n [N]                --> prints first N lines to stdout
+- paste -s -d [delimiter]    --> serial, delimiter
+- paste file1 file2          --> vytiskne je vedle sebe jako sloupce v excelu
+- bc                         --> calculator
+- tr 'before' 'after'        --> zamneni vsechny okurence 'before' za 'after'
+- tr -d 'what'               --> vymaze 'what' 
+- tr -c -d 'what'            --> odstrani vsechno co neni 'what'
+- wc <[file]                 --> vypise count: newline, word, byte
+- grep [pattern] [filename]  --> prohledani souboru
+- grep -Eq '^[0-9]+$'        --> test jestli je decimal
+- grep -c [pattern]          --> vrati count radku s pattern, '.' = non-empty line
+- rev                        --> otoci radky podle -c
+- column -s [sep] -t (table) --> fajn na delani hezky citelnych tabulek
+- join -j[n] one.txt two.txt --> spoji dva soubory s common fieldem n
+- sha256sum                  --> 256bit hashing
+- read -r FIRST_LINE < input.txt ; echo "$FIRST_LINE"     --> read cte po radkach
+
+Writing custom filters
+- they should be usable for both stdin and multiple files
+- /home/intro/mff/04/group_sum.py
+- cat logs/*.csv | cut -d , -f 1,4 | tr ',' ' ' | /home/intro/mff/04/group_sum.py
+    --> vypise seznam dvojici   'day trafic'
+    --> pokud chci top 3 dny:  sort -n -k 2 | tail -n 3

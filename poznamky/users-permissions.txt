@@ -1,0 +1,58 @@
+Acess rights
+- /etc/passwd   --> list of all user accounts
+- every running process is owned by one of the users --> it is running under him
+- every file (real or virtual) has an owner 
+- when a process tries to modify the file the OS decides if it can
+     --> based on the owner of the file, process and defined permissions
+     --> if not --> raise an exception / return error code
+
+- /etc/group   --> list of all groups of users - everyone is in at least 1 group
+- files have both an owning user and an owning group
+- files have 3 sets of permissions  --> user/group/other
+   - r (read), w (write), x (execute) 
+   - r-- file can be lounched by manually launching the interpretor
+   - --x file can't be lounched because the interpretor needs to read it
+   - when a program is run, the process will inherit the owner and groups of
+     his parrent --> the shell/user who launched it 
+       --> the ownership of the executable file does not matter
+
+- directories 
+   - r: list directory entries  --> files, sub-dirs,...
+   - w: create, remove, rename entries
+   - x: open the entries 
+         --> files inside --x dir can be opened but cant be listed
+
+Root account 
+- the superuser / root 
+- has admin (sudo) previliges and can do anything with any file
+- perissions do not apply to root-owned processes
+
+Changing permissions
+- permissions can be modified by the owner of the file
+    --> he can remove his own rights and then set them back
+- ls -l   --> view permissions
+   -rwxr-xr-x. 1 intro intro   142 Feb 25 20:15  hello_world.py*
+   drwxr-xr-x. 1 intro intro     8 Mar  4 22:33  dir1/
+  [type,owner,group,other] [?] [owner] [group]
+- type: 'd' for directory, '-' for plain file, 'l' for symlink
+- all files in ~/ are world (to everyone) readable
+- not a problem, because the intro/ dir in /home is:
+   drwx------. 1 intro intro 692 Mar  9 10:59 intro/
+    --> only the owner can cd into intro/
+- chmod [ugoa][+-=][rwx] file1 file2   --> a = all
+    --> chmod ug+x file.txt  --> adds 'x' for user and group
+
+Special permissions
+- ls -ld /usr/bin/passwd /tmp
+  drwxrwxrwt. 19 root root   440 Mar 12 13:37 /tmp/
+  -rwsr-xr-x.  1 root root 32760 Jul 22  2022 /usr/bin/passwd*
+- tmp/     --> t = the user can remove only their own files
+- passwd*  --> s = no matter who runs the shell, passwd will be running under
+                   the user owning the file (not the shell) = root
+           --> it allows the user to run the program with higher permissions
+           --> passwd* allows the user to change their password
+
+Problems
+- the number of needed groups grows exponentially with the number of users
+- POSIX access control lists --> man 5 acl 
+

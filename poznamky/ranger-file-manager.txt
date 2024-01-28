@@ -1,0 +1,22 @@
+Navigation
+
+    j - Move down
+    k - Move up
+    h - Move to the parent directory
+    l - Open file or move to directory
+    gg - Go to the top of the list
+    G - Go to the bottom of the list
+    gh - cd ~
+    gm - cd /media
+    gr - cd /
+    q - Quit Ranger
+
+Working with Files
+
+    zh - View hidden files
+    cw - Rename current file
+    <space> - Select current file
+    yy - Yank (copy) file (or selected files)
+    dd - Mark file (or selected files) for cut operation file
+    pp - Paste yanked or cut file(s)
+    dD - Delete file (or selected files)

@@ -1,0 +1,21 @@
+- whoami   --> user
+- who      --> who else is logged in
+- ps = process status    --> find out what shell is running
+- basename   --> strips path of prefix dirs  -> dir/file >>> file
+- dirname    --> strips the path of the last element -> dir/file >>> dir
+- date '+Custom date | %Y-%m-%d %H:%M:%S |'  --> useful for logging
+- date +%s   --> seconds since the start of epoch  (1.1.1970)
+- date --date='@pocet sekund od zacatku epochy' 
+- id
+- hostname
+- uname -a
+- ifconfig    --> network stuff
+- ip, ip addr --> network stuff
+- netstat
+- ss         --> session stuff
+- env        --> enviroment variables
+- lsblk      --> list block devices - drives 
+- lsusb      --> list USBs
+- lsof       --> list open files 
+
+- apropos [keyword]    --> prints commands with keyword in them, e.g. apropos usb 

@@ -1,0 +1,45 @@
+Tmux = terminal multiplexer
+- allows to send the session into background, and it remains there even if 
+  you log out or the ssh connection is interrupted
+- allows to create windows (tabs) and panes (split-screen terminals)
+
+Creating session
+- tmux   --> the simplest way to start tmux session
+- tmux new -s <session-name>
+- tmux attach -t <session-name>
+- tmux kill-session -t <session-name>
+- tmux ls   --> list all sessions
+
+Inside session
+- use tmax prefix = Ctrl+b  +  [command]
+
+  d  = detach from session
+
+  c  create window
+  w  list windows
+  n  next window
+  p  previous window
+  f  find window
+  ,  name window
+  &  kill window
+
+  %  vertical split
+  "  horizontal split
+
+  o  swap panes
+  q  show pane numbers
+  x  kill pane
+  ←  switch to left pane
+  →  switch to right pane
+  ↑  switch to upward pane
+  ↓  switch to downward pane
+
+  :set synchronize-panes    --> write simultaneously to all panes
+        --> open several ssh connections and then controll them all at once
+
+~/.tmux.conf   --> create for user runtime configuration
+- navigate the panes with vim shortcuts
+  bind-key C-h run "tmux select-pane -L"
+  bind-key C-j run "tmux select-pane -D"
+  bind-key C-k run "tmux select-pane -U"
+  bind-key C-l run "tmux select-pane -R"

@@ -1,0 +1,77 @@
+Enviroment variables - UPPER-CASE  --> $PATH
+Shell variables - lowe-case  --> $my_variable
+
+- all variables are strings (but shell supports integer arithmetics with them)
+- variables can be made visible to outside shell programs using 'export'
+
+export VAR    --> if VAR is already defined
+export VAR="value"
+unset VAR     --> unset the variable VAR
+VAR="value" command_to_run   --> change value of var only for this one command
+   --> we have a python script main.py that uses a env variable VAR
+   --> VAR="value" main.py < input.txt
+- env   --> print all exported variables
+- env PATH="$PATH:$PWD/bin" CMD   --> run CMD in a modified enviroment 
+- set   --> print all variables
+
+Python
+- os.getenv("PATH", default="kdyz neexistuje")  --> get values of env variables
+- #!/usr/bin/env python3   --> 'env python3' looks for python3 in $PATH 
+    --> it lounches python3 and passes path-to-script.py as first argument
+
+Special variables
+- $HOME    --> ~
+- $PWD     --> current working dir
+- $USER    --> current user
+- $RANDOM  --> random uint15   - uses a linear congruential algorithm
+- $PATH
+
+Shell parameters
+- $0 = script name
+- $1, $2, $3,...   --> script parameters, $i = sys.argv[i]
+- "$@"    --> sys.argv[1:]   --> useful for passing params to another program
+- shift n  --> shifts n variables --> shift 1 makes $2 -> $1
+
+Using uninitialized variables
+- ${VAR:-default_value}    --> this doesnt trigger the warning from 'set -u'
+- EDITOR="${EDITOR:-mcedit}"    --> change the variable for this script
+- "$EDITOR" file-to-edit.txt    --> $EDITOR is well defined now
+- ${VAR}   --> explicit delimiting the variable name
+
+Expansion of variables
+- VAR="val with spaces"
+echo "$VAR" $VAR           >>> 'val with spaces' 'val' 'with' 'spaces'
+- VAR="*.sh"
+echo "$VAR" '$VAR' $VAR    >>> *.sh $VAR one.sh two.sh
+- VAR=~
+echo "$VAR" '$VAR' $VAR    >>> /home/intro $VAR /home/intro
+- VAR="~"
+echo "$VAR" '$VAR' $VAR    >>> ~ $VAR ~
+
+Command substitution
+- capturint stdout into a variable
+- std_out_var="$( command_with_stdout )"
+
+> my_temp="$( mktemp -d )"     --> $my_temp has the name of the temp file
+> stdout="$( the_command 2>"$my_temp/err.txt" )"    --> redirect stderr
+> stderr="$( cat "$my_temp/err.txt" )"
+> ...
+> # At the end of the script
+> rm -rf "$my_temp"
+
+- input_filename="/some/path/to/a/file.sh"
+- backup="$( dirname "$input_filename" )/$( basename "$input_filename" ).bak"
+
+Global and local variables
+- all variables are local by default 
+- local   --> declare local var in func 
+- changes to exported variables stay inside the program
+- changes to local variables stay inside the function
+- changes to variables inside a pipe stay in the pipe
+- enclosing a part of a script in ( .. ) creates a subshell 
+   --> variables modified inside this subshell are not visible to the outer shell
+
+Variable arithmetic
+- $(( )) enviroment   --> dont use $ inside - except $#
+> counter=1
+> counter=$(( counter + 1 ))
