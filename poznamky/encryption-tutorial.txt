@@ -1,0 +1,17 @@
+- goal is to send file 'bigfile' securely 
+
+- receiver will generate rsa keys and send the public key to the sender  
+openssl genrsa -out rsa.priv 1024     
+openssl rsa -in rsa.priv -pubout -out rsa.pub
+
+- sender will generate a symetric encryption key and encrypt the file
+openssl rand -hex -out passwd 32
+openssl enc -aes-256-cbc -in bigfile -out bigfile.enc -pass file:./passwd
+
+- sender will encrypt the password using the receivers public key
+openssl pkeyutl -encrypt -pubin -inkey rsa.pub -in passwd -out passwd.enc
+
+- receiver will receiver the encrypted files and decrypt them
+openssl pkeyutl -decrypt -inkey rsa.priv -in passwd.enc -out passwd.dec
+openssl enc -d -aes-256-cbc -in bigfile.enc -out bigfile.dec -pass file:./passwd.dec
+
