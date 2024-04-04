@@ -15,17 +15,17 @@ Print lines from FILE with MIN <= len(line) < MAX.
 EOF
 }
 
-while getopts "a:b" opt; do   # ted -a vyzaduje argument
+while getopts "a:bhv" opt; do   # ted -a vyzaduje argument
     case $opt in 
     a) echo "Got option a with value $OPTARG";;
     b) echo "Got option b";;
     h) usage; exit;;
     v) set -x;; 
-    *) echo usage >&2; exit 1;;
+    *) usage >&2; exit 1;;
     esac
 done
 
 shift $(( OPTIND - 1))  # OPTIND = index optiony na ktery se to zastavilo
 
-printf "Positional arg: %sn" "$@"     # man 3 printf
+printf "Positional arg: %s" "$@"     # man 3 printf
 # main program
