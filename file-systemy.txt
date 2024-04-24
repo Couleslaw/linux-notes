@@ -1,0 +1,16 @@
+FAT32 
+NTFS    - windows
+EXT2(3/4)  -linux
+BTRFS
+
+sudo mkdir /mnt/flash
+sudo mount /dev/sdb1 /mnt/flash  # mount a flash drive
+sudo umount /mnt/flash
+
+sudo mkdir /mnt/disk-image
+sudo mount -o loop disk.fat.img /mnt/disk-image  # mount a disk image
+sudo umount /mnt/disk-image
+
+df  # disk free
+du  # disk usage
+lsblk  # list partitions of block devices

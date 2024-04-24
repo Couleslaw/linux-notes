@@ -1,6 +1,0 @@
-FAT32 
-NTFS    - windows
-EXT2(3/4)  -linux
-BTRFS
-
-ls -l 

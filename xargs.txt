@@ -1,0 +1,25 @@
+Feeds arguments to a command
+
+cutoff_date="$( date -d "20 days ago" '+%Y%m%d' )"
+for filename in 202[0-9]-[01][0-9]-[0-3][0-9].txt; do
+    date_num="$( basename "$filename" .txt | tr -d '-' )"
+    if [ "$date_num" -lt "$cutoff_date" ]; then
+        rm "$filename"
+    fi
+done
+
+--> calls rm for each filename --> not effective
+
+cutoff_date="$( date -d "20 days ago" '+%Y%m%d' )"
+for filename in 202[0-9]-[01][0-9]-[0-3][0-9].txt; do
+    date_num="$( basename "$filename" .txt | tr -d '-' )"
+    if [ "$date_num" -lt "$cutoff_date" ]; then
+        echo "$filename"
+    fi
+done | xargs rm
+
+--> calls rm once and feeds it all the filenames to remove
+
+- delimiter is by default whitespace
+> xargs --null  # it is safer to user \0 as a delimiter
+> find -print0 ... | xargs --null [cmd]   # find uses \0 as a delimiter

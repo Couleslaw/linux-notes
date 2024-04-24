@@ -45,6 +45,3 @@ Cestovani casem
 - git reset
 - git reflog 
 - git checkout [commit id]  --> detached head, posune head na ten commit
-
-
-

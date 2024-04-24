@@ -1,0 +1,33 @@
+Special virtual files
+- /dev /proc
+- their contents do not physically exist untill they are read from
+- linux generates their contents at the moment they are read
+
+/dev
+- files representing devices
+- /dev/full   --> a full disc 
+- /dev/null   --> a black hole
+- /dev/stdin (='-')    --> stdin explicit
+   --> ./group_sum.py /dev/stdin one.txt <two.txt
+   --> python opens /dev/stdin and the contents of two.txt are redirected into it
+- /dev/stdout      --> stdout explicit
+- /dev/sda1     --> hard drives, hexdump -C to see bytes on drive
+- /dev/urandom  --> random bytes
+
+
+/bin    = binaries  --> commands
+/sbin   - admin commands e.g. adduser
+/usr/bin + /usr/sbin  --> same commands + typicaly a bit more
+/usr/local/bin    --> store user created binaries
+
+/boot   --> files for booting
+/var    --> volatile data - log files + web application related files
+/tmp    --> temporary files
+/home   --> normal users are stored here
+/root   --> roots home dir
+/lib + /usr   --> libraries, apps, system-wide data files
+/proc   --> controlling and reading kernel settings
+- /proc/meminfo   --> info abour RAM usage
+
+/etc    = settings + configs
+/etc/passwd   --> list user accounts

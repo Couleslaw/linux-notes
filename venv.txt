@@ -1,0 +1,28 @@
+virtual enviroment
+- work in a clean enviroment with bare language and dependencies
+
+> python3 -m venv my-venv    # create the dir 'my-venv' with a bare python inst.
+> soucre my-ven/bin/activate # activate the virtual enviroment
+> pip install numpy
+> pip install --upgrade numpy
+> pip uninstall numpy
+> deactivate            # deactivate the virtual enviroment
+
+
+Package in a git repo
+> git clone [URL] ; pip install /path/to/python_package
+> pip install git+https://git.example.com/MyProject    # shorter
+
+
+Versioning
+> pip install numpy          # latest version
+> pip install numpy == 4.2   # specific version
+> pip install numpy >= 4.2   # minimal version
+> pip install numpy == 4.*   # wildcard
+> pip install numpy [!= ~= > < ...]   # other
+
+> pip freeze  # prints list of dependencies with their versions
+     out: fs==2.4.16,...
+> pip freeze > requirements.txt
+> pip install -r requirements.txt    # install all packages
+

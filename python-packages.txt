@@ -1,0 +1,4 @@
+Official tutorial
+   - https://packaging.python.org/en/latest/tutorials/packaging-projects/
+   - directory structure,...
+   - setup.cfg + pyproject.toml

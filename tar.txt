@@ -1,0 +1,18 @@
+archiving (tar) and compressing (gzip) are two distinct action
+
+tar -c  # cerate a new archive from existing files
+    -x  # extract files from the archive
+    -t  # print the table of files inside the archive
+    -f  # name the archive
+    -z  # call gzip to compress the archive
+
+> tar -cf archive.tar path_to_archive/   # create a new uncompressed archive
+> tar -c path_to_archive/ | gzip >archive.tar.gz  # create a compressed archive
+> tar -czf archive.tar.gz path_to_archive/        # shorter
+> gzip -d archive.tar.gz ; tar -xf archive.tar    # decompress and extract
+> tar -xzf archive.tar.gz                         # shorter
+
+!!! tar will overwrite files without warning !!!
+atool    # wrapper around utils that is safe
+> apack archive.tar.gz path_to_archive
+> aunpack archive.tar.gz

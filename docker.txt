@@ -1,0 +1,46 @@
+Image - like a lightweight disk image --> has / dir with /dev, /bin,...
+Container - instance of an image - does not affect the image
+--> the container cant see the host, but the host can see the containers processes
+--> something between virtual enviroment and virtual machine
+--> / dir of the container is a subdir of the host
+--> containers PIDs are mapped to hosts PIDs
+
+Alpine - minimalistic linux distro
+       - uses Alpine package manager --> apk add git
+
+Podman is a newer clone of docker with extra features
+> podman info                # print info about the system
+> podman images              # print list of installed images
+> podman rmi [IMAGE ID]      # remove image
+> podman run [image] [cmd]   # run cmd on image --> starts a container
+> podman run alpine:latest cat /etc/passwd   # cat the file and return 
+> podman ps -a                               # list all containers
+> podman rm [CONTAINER ID]                   # remove container
+> podman run --rm alpine:latest car /etc/os-release
+    --> cat the file, return and remove the container
+> podman run --rm -it python:3.9-alpine /bin/sh
+    --> -it = interactive mode, exec /bin/sh --> shell
+> podman start [CONTAINER]    # start an exited interactive session again
+> podman attach [CONTAINER]   # attach to a running container
+> podman exec -it [CONTAINER] /bin/sh   # exec shell in a running container 
+    --> two ways to attach, difference is exiting
+    - exit exec --> return to host, container is still running
+    - exit attach  --> terminate the contaienr 
+
+> podman pull IMAGE:TAG       # fetch the image, tag can be 'latest'
+> podman pull docker.io/library/python:3-alpine
+
+/etc/containers/registries.conf.d/unqualified.conf
+   --> file with prefixes to search for the image
+   unqualified-search-registries = ["docker.io"]
+   --> now it is sufficient to: podman pull python:3-alpine
+
+> podman run --detach --name webserver --publish 8080:80/tcp -v ./web:/usr/share/nginx/html:ro nginx:1.20.0
+   --> detach = the container runs in the background  --> webservers
+   --> name = assign name to container
+   --> publish = container runs a service with tcp on port 80
+                 the host recieves it on port 8080
+                 --> firefox http://localhost:8080/
+   --> volume [path in host]:[path in container]:[ro/rw]  # read only / read write
+        --> the container sees the file/dir in host at the specified path
+> podman [stop/start] webserver    # stop/start the webserver

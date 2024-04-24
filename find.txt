@@ -1,0 +1,19 @@
+> find -name alpha.txt   # finds all alpha.txt files in ./ and all subdirs
+> find /path/to/dir -name '*.txt' # find all .txt files in /path/to/dir
+     --> !!! wildcards in '' !!!
+> find -delete -name bad.txt   # delete found files
+> find -name [name] -exec [cmd] {} \;  # execute [cmd] on each found name
+   --> {} will be replaces with filename, ; terminates commnads, so it is escaped
+> find -name '*.md' -exec wc -l {} \;
+> find -name '*.md' -exec echo {} \;   # call echo [name] for each name
+> find -name '*.md' -exec echo {} +    # call echo once with all names as args
+
+find -options-for-find | while read filename; do
+    do_some_complicated_things_with "$filename"
+done
+--> unsafe in filenames have ' ' or '\n' in them
+
+find src -type f -name '*.md' -print0 | while IFS= read -r -d $'\0' filename; do
+    build_markdown_page "$filename"
+done
+--> works every time
