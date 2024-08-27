@@ -1,4 +1,5 @@
-https://github.com/gokcehan/lf/wiki/Tutorial
+quick tutorial: https://github.com/gokcehan/lf/wiki/Tutorial
+key bindings:   https://github.com/gokcehan/lf/blob/505c4ef6c0de/doc.md
 
 start: 
 	lf      # dont change the working dir on exit
@@ -34,6 +35,7 @@ $ or 'enter'     # just execute it in the shell, display lf once its finished
 &                # run the command async in the background
 %                # pipe the output from the command to the file manager
 
+find letter: f:
 search: /
 search back: ?
 next/previous: nN
