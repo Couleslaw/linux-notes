@@ -1,0 +1,20 @@
+wsl   					# start efault distro
+wsl -d <distro>			# start distro
+wsl --list				# list instaled distros
+wsl --list --online  	# list all distros
+wsl --install <distro>  # isntall distro
+wsl --list --verbose    # list more info --> what is running
+wsl --shutdown  		# stops all machines
+wsl --terminate <distro>	# stop distro
+wsl --set-default <distro>
+wsl --status			# default distro + more info
+wsl --unregister <distro>  # uninstall distro
+
+wsl --export <distro> soubor.tar	# vyrobi kopii instance VM
+wsl --import <name> <location> soubor.tar  # do dir location importuje distro, v --list pak bude jako name
+wsl -d <name> -u couleslaw    # na importnutych distrech se defaultne logne jako root, musim specifikovat usera
+
+# linux commands v powershellu
+# ipconfig je windows command, vysledek pipuju do wsl grep
+ipconfix | wsl grep 10.
+

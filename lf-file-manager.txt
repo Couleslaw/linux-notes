@@ -1,0 +1,39 @@
+https://github.com/gokcehan/lf/wiki/Tutorial
+
+start: 
+	lf      # dont change the working dir on exit
+	lfcd    # change working dir to last dir in lf on exit - this is a shell function
+	Ctrl-o  # this is a keybind for lfcd --> look into .bashrc
+
+quit: q
+up/down/left/right = vim motions + arrows
+
+open in
+	shell: w
+	editor: e
+	pager: i
+
+mark file/dir: space
+invert selection: v
+unmark all: u
+
+copy, cut, paste: y,d,p
+clear already copied files, but not other marked: c
+
+use commdands with ':', these can be separated with ';'
+:set sortby size
+:set info size
+
+default keybindings menu after pressing a key
+info: z
+sorting: s
+
+execute shell commands
+$ or 'enter'     # just execute it in the shell, display lf once its finished
+!                # wait for a key-stroke after its finished 
+&                # run the command async in the background
+%                # pipe the output from the command to the file manager
+
+search: /
+search back: ?
+next/previous: nN
