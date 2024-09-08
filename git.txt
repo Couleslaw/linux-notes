@@ -15,6 +15,7 @@ Commands
 - git add, git add -p  --> specify what hunks (changes) in a file should be added
 - git commit [-m 'Typo fix'], git commit --amend    --> modify last commit
 - git push
+- git push --set-upstream git@github.com:Couleslaw/repo.git master  --> nastavi upstream a pushne local repo na github
 - git pull
 - git log, git log --oneline (=ls), git ll
 - git rev-parse --short HEAD   --> get last commit ID
